@@ -1,0 +1,35 @@
+@import '../styles/base.less';
+
+.SC-MessageArea {
+  position: relative;
+  bottom: 0;
+  width: @message-area-width;
+  height: @message-area-height;
+  border-top: solid;
+  border-top-width: 1px;
+
+  &-TextBox {
+    width: 85%;
+    float: left;
+  }
+
+
+  &-Text {
+    display: inline-block;
+
+  }
+
+  &-IconArea {
+    display: inline-block;;
+    height: 100%;
+    width: 15%;
+    cursor: pointer;
+
+    &-Icon {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

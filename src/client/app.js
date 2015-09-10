@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import StickyChat from './components/StickyChat';
+import StickyChatMini from './components/StickyChatMini';
 
 const store = configureStore();
 
@@ -9,7 +9,7 @@ const store = configureStore();
 class App extends Component {
   render() {
     return (
-      <StickyChat />
+      <StickyChatMini />
     )
   }
 }
