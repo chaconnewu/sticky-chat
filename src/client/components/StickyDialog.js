@@ -6,7 +6,7 @@ class StickyDialog extends Component {
   render() {
     const msgs = this.props.messages.map(function(message) {
       return (
-        <div className="item">
+        <div className="item" key={ message.time }>
           <div className="header">
             { message.author }
           </div>

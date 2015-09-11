@@ -29102,7 +29102,6 @@
 	      var dispatch = _props.dispatch;
 
 	      var actions = (0, _redux.bindActionCreators)(Actions, dispatch);
-	      console.log(actions);
 	      return _react2['default'].createElement(_componentsStickyChatMini2['default'], {
 	        actions: actions,
 	        messages: messages
@@ -29300,7 +29299,7 @@
 	      var msgs = this.props.messages.map(function (message) {
 	        return _react2['default'].createElement(
 	          'div',
-	          { className: 'item' },
+	          { className: 'item', key: message.time },
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'header' },
@@ -29684,6 +29683,14 @@
 	  }
 
 	  _createClass(StickyMessageArea, [{
+	    key: 'handleKeyDown',
+	    value: function handleKeyDown(e) {
+	      if (e.keyCode === 13) {
+	        e.preventDefault();
+	        this.handleSend();
+	      }
+	    }
+	  }, {
 	    key: 'handleSend',
 	    value: function handleSend() {
 	      var input = this.refs.messageInput.getDOMNode();
@@ -29702,7 +29709,12 @@
 	        _react2['default'].createElement(
 	          'div',
 	          { className: 'SC-MessageArea-TextBox field' },
-	          _react2['default'].createElement('textarea', { rows: '2', ref: 'messageInput', className: 'SC-MessageArea-Text' })
+	          _react2['default'].createElement('textarea', {
+	            rows: '2',
+	            ref: 'messageInput',
+	            className: 'SC-MessageArea-Text',
+	            onKeyDown: this.handleKeyDown.bind(this)
+	          })
 	        ),
 	        _react2['default'].createElement(
 	          'span',

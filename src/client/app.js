@@ -15,7 +15,6 @@ class App extends Component {
   render() {
     const { messages, dispatch } = this.props;
     const actions = bindActionCreators(Actions, dispatch);
-    console.log(actions);
     return (
       <StickyChatMini
         actions={ actions }
