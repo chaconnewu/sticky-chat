@@ -29302,10 +29302,19 @@
 	          { className: 'item', key: message.time },
 	          _react2['default'].createElement(
 	            'div',
-	            { className: 'header' },
+	            { className: 'SC-Dialog-MessageHeader header' },
 	            message.author
 	          ),
-	          message.content
+	          _react2['default'].createElement(
+	            'span',
+	            { className: 'SC-Dialog-Timestamp' },
+	            message.time
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'SC-Dialog-Message' },
+	            message.content
+	          )
 	        );
 	      });
 	      return _react2['default'].createElement(
@@ -29361,7 +29370,7 @@
 
 
 	// module
-	exports.push([module.id, ".SC-Dialog {\n  position: relative;\n  width: 100%;\n  height: 90%;\n  border-width: 1px;\n  padding: 5px;\n}\n", ""]);
+	exports.push([module.id, ".SC-Dialog {\n  position: relative;\n  width: 100%;\n  height: 90%;\n  border-width: 1px;\n  padding: 5px;\n}\n.SC-Dialog-MessageHeader {\n  display: inline !important;\n}\n.SC-Dialog-Message {\n  font-size: 15px;\n}\n.SC-Dialog-Timestamp {\n  margin-left: 20px;\n  font-style: italic;\n}\n", ""]);
 
 	// exports
 
@@ -29885,7 +29894,7 @@
 	}
 
 	function newMessage(message) {
-	  var time = (0, _moment2['default'])().format('YYY-MM-DD HH:mm:ss');
+	  var time = (0, _moment2['default'])().format('YYYY-MM-DD HH:mm:ss');
 	  var author = 'Yu Wu';
 	  _provider.socket.emit('new message', { author: author, time: time, content: message });
 	  return { type: types.NEW_MESSAGE };

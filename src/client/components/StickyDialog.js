@@ -7,10 +7,18 @@ class StickyDialog extends Component {
     const msgs = this.props.messages.map(function(message) {
       return (
         <div className="item" key={ message.time }>
-          <div className="header">
+
+          <div className="SC-Dialog-MessageHeader header">
             { message.author }
           </div>
-          { message.content }
+          <span className="SC-Dialog-Timestamp">
+            { message.time }
+          </span>
+
+
+          <div className="SC-Dialog-Message">
+            { message.content }
+          </div>
         </div>
       );
     });
