@@ -1,4 +1,5 @@
 import { ADD_MESSAGE } from '../constants/ActionTypes';
+import moment from 'moment';
 
 const initalState = {
   channel: '',
@@ -10,7 +11,11 @@ export default function messages(state = initalState, action) {
     case ADD_MESSAGE:
       console.log(state);
       return Object.assign({}, state, {
-        messages: [...state, action.message]
+        messages: [...state.messages, {
+          author: 'Yu Wu',
+          content: action.message,
+          time: moment().format('YYYY-MM-DD HH:mm:ss')
+        }]
       });
     default:
       return state;

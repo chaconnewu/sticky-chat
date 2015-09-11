@@ -5,8 +5,11 @@ import './StickyMessageArea.less';
 class StickyMessageArea extends Component {
   handleSend() {
     const input = this.refs.messageInput.getDOMNode();
-		this.props.addMessage(input.value.trim());
-		input.value = '';
+    const content = input.value.trim();
+    if (content.length > 0) {
+		  this.props.addMessage(content);
+		  input.value = '';
+    }
   }
 
   render() {

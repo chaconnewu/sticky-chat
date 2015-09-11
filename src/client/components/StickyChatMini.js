@@ -14,7 +14,11 @@ class StickyChatMini extends Component {
   render() {
     return(
       <div>
-        { this.state.isOpen ? <StickyChatWindow addMessage={ this.props.actions.addMessage }/> : null }
+        { this.state.isOpen ?
+          <StickyChatWindow
+            addMessage={ this.props.actions.addMessage }
+            messages={ this.props.messages.messages }
+          /> : null }
         <div className="SC-Restricted">
           <div className="ui inverted menu">
             <a
