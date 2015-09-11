@@ -29294,12 +29294,26 @@
 	  }
 
 	  _createClass(StickyDialog, [{
+	    key: 'componentWillUpdate',
+	    value: function componentWillUpdate() {
+	      var node = _react2['default'].findDOMNode(this.refs.scroller);
+	      this.shouldScrollBottom = node.scrollTop + node.offsetHeight === node.scrollHeight;
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      if (this.shouldScrollBottom) {
+	        var node = _react2['default'].findDOMNode(this.refs.scroller);
+	        node.scrollTop = node.scrollHeight;
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var msgs = this.props.messages.map(function (message) {
+	      var msgs = this.props.messages.map(function (message, index) {
 	        return _react2['default'].createElement(
 	          'div',
-	          { className: 'item', key: message.time },
+	          { className: 'item', key: index },
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'SC-Dialog-MessageHeader header' },
@@ -29322,7 +29336,7 @@
 	        { className: 'SC-Dialog' },
 	        _react2['default'].createElement(
 	          'div',
-	          { className: 'ui list' },
+	          { ref: 'scroller', className: 'SC-Dialog-Scroller ui list' },
 	          msgs
 	        )
 	      );
@@ -29370,7 +29384,7 @@
 
 
 	// module
-	exports.push([module.id, ".SC-Dialog {\n  position: relative;\n  width: 100%;\n  height: 90%;\n  border-width: 1px;\n  padding: 5px;\n}\n.SC-Dialog-MessageHeader {\n  display: inline !important;\n}\n.SC-Dialog-Message {\n  font-size: 15px;\n}\n.SC-Dialog-Timestamp {\n  margin-left: 20px;\n  font-style: italic;\n}\n", ""]);
+	exports.push([module.id, ".SC-Dialog {\n  position: relative;\n  width: 100%;\n  height: 90%;\n  border-width: 1px;\n  padding: 5px;\n}\n.SC-Dialog-Scroller {\n  display: block;\n  overflow-y: scroll;\n  height: 100%;\n}\n.SC-Dialog-MessageHeader {\n  display: inline !important;\n}\n.SC-Dialog-Message {\n  font-size: 15px;\n}\n.SC-Dialog-Timestamp {\n  margin-left: 20px;\n  font-style: italic;\n}\n", ""]);
 
 	// exports
 
