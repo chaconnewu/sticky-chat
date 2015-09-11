@@ -16,7 +16,7 @@ class StickyChatMini extends Component {
       <div>
         { this.state.isOpen ?
           <StickyChatWindow
-            addMessage={ this.props.actions.addMessage }
+            newMessage={ this.props.actions.newMessage }
             messages={ this.props.messages.messages }
           /> : null }
         <div className="SC-Restricted">

@@ -3,7 +3,7 @@ var path = require('path');
 var React = require('react');
 
 var config = {
-  entry: path.resolve(__dirname, './src/client/provider.js'),
+  entry: path.resolve(__dirname, './src/client/index.js'),
   output: {
     path: path.resolve(__dirname, './src/client/'),
     filename: 'bundle.js'

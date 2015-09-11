@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser')
 var http = require('http');
+var socketio = require('socket.io');
 var app = express();
 
 var port = 3000;
@@ -19,5 +20,23 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(CLIENT_DIR + '/index.html'));
 });
 
-app.listen(port);
+var server = app.listen(port);
 console.log('The server starts on port ' + port);
+
+var io = socketio.listen(server);
+
+var messages = [];
+io.on('connection', function(socket) {
+  console.log('New connection!');
+  socket.on('disconnect', function() {
+    console.log('Client disconnected');
+  });
+
+  socket.on('new message', function(msg) {
+    console.log('new message :', msg);
+    messages.push(msg);
+
+    io.emit('new message', msg);
+  })
+
+});

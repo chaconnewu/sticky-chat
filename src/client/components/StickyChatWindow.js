@@ -5,11 +5,10 @@ import './StickyChatWindow.less';
 
 class StickyChatWindow extends Component {
   render() {
-    console.log(this.props.messages);
     return (
       <div className="SC-Window">
         <StickyDialog messages={ this.props.messages } />
-        <StickyMessageArea addMessage={ this.props.addMessage }/>
+        <StickyMessageArea newMessage={ this.props.newMessage }/>
       </div>
     );
   }

@@ -7,7 +7,7 @@ class StickyMessageArea extends Component {
     const input = this.refs.messageInput.getDOMNode();
     const content = input.value.trim();
     if (content.length > 0) {
-		  this.props.addMessage(content);
+		  this.props.newMessage(content);
 		  input.value = '';
     }
   }
