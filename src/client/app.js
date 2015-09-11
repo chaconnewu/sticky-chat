@@ -1,30 +1,28 @@
-import React, { Component, PropTypes } from 'react'
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
+import React, { Component, PropTypes } from 'react';
 import StickyChatMini from './components/StickyChatMini';
+import { bindActionCreators } from 'redux';
+import { connect, Provider } from 'react-redux';
 
-const store = configureStore();
+import * as Actions from './actions/messages';
 
+function mapStateToProps(state) {
+  return {
+    messages: state.messages
+  };
+}
 
 class App extends Component {
   render() {
+    const { messages, dispatch } = this.props;
+    const actions = bindActionCreators(Actions, dispatch);
+    console.log(actions);
     return (
-      <StickyChatMini />
+      <StickyChatMini
+        actions={ actions }
+        messages={ messages }
+      />
     )
   }
 }
 
-class ProviderWrapper extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        {() => <App />}
-      </Provider>
-    );
-  }
-}
-
-React.render(
-  <ProviderWrapper />,
-  document.getElementById('app')
-);
+export default connect(mapStateToProps)(App);

@@ -66,33 +66,14 @@
 
 	var _storeConfigureStore2 = _interopRequireDefault(_storeConfigureStore);
 
-	var _componentsStickyChatMini = __webpack_require__(179);
+	var _app = __webpack_require__(179);
 
-	var _componentsStickyChatMini2 = _interopRequireDefault(_componentsStickyChatMini);
+	var _app2 = _interopRequireDefault(_app);
 
 	var store = (0, _storeConfigureStore2['default'])();
 
-	var App = (function (_Component) {
-	  _inherits(App, _Component);
-
-	  function App() {
-	    _classCallCheck(this, App);
-
-	    _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
-	  }
-
-	  _createClass(App, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2['default'].createElement(_componentsStickyChatMini2['default'], null);
-	    }
-	  }]);
-
-	  return App;
-	})(_react.Component);
-
-	var ProviderWrapper = (function (_Component2) {
-	  _inherits(ProviderWrapper, _Component2);
+	var ProviderWrapper = (function (_Component) {
+	  _inherits(ProviderWrapper, _Component);
 
 	  function ProviderWrapper() {
 	    _classCallCheck(this, ProviderWrapper);
@@ -107,7 +88,7 @@
 	        _reactRedux.Provider,
 	        { store: store },
 	        function () {
-	          return _react2['default'].createElement(App, null);
+	          return _react2['default'].createElement(_app2['default'], null);
 	        }
 	      );
 	    }
@@ -21750,15 +21731,98 @@
 	  value: true
 	});
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 	var _redux = __webpack_require__(166);
 
-	var rootReducer = (0, _redux.combineReducers)({});
+	var _messages = __webpack_require__(196);
+
+	var _messages2 = _interopRequireDefault(_messages);
+
+	var rootReducer = (0, _redux.combineReducers)({
+	  messages: _messages2['default']
+	});
 
 	exports['default'] = rootReducer;
 	module.exports = exports['default'];
 
 /***/ },
 /* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _componentsStickyChatMini = __webpack_require__(180);
+
+	var _componentsStickyChatMini2 = _interopRequireDefault(_componentsStickyChatMini);
+
+	var _redux = __webpack_require__(166);
+
+	var _reactRedux = __webpack_require__(158);
+
+	var _actionsMessages = __webpack_require__(194);
+
+	var Actions = _interopRequireWildcard(_actionsMessages);
+
+	function mapStateToProps(state) {
+	  return {
+	    messages: state.messages
+	  };
+	}
+
+	var App = (function (_Component) {
+	  _inherits(App, _Component);
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    _get(Object.getPrototypeOf(App.prototype), 'constructor', this).apply(this, arguments);
+	  }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var messages = _props.messages;
+	      var dispatch = _props.dispatch;
+
+	      var actions = (0, _redux.bindActionCreators)(Actions, dispatch);
+	      console.log(actions);
+	      return _react2['default'].createElement(_componentsStickyChatMini2['default'], {
+	        actions: actions,
+	        messages: messages
+	      });
+	    }
+	  }]);
+
+	  return App;
+	})(_react.Component);
+
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps)(App);
+	module.exports = exports['default'];
+
+/***/ },
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21781,11 +21845,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _StickyChatWindowJs = __webpack_require__(180);
+	var _StickyChatWindowJs = __webpack_require__(181);
 
 	var _StickyChatWindowJs2 = _interopRequireDefault(_StickyChatWindowJs);
 
-	__webpack_require__(181);
+	__webpack_require__(192);
 
 	var StickyChatMini = (function (_Component) {
 	  _inherits(StickyChatMini, _Component);
@@ -21807,7 +21871,7 @@
 	      return _react2['default'].createElement(
 	        'div',
 	        null,
-	        this.state.isOpen ? _react2['default'].createElement(_StickyChatWindowJs2['default'], null) : null,
+	        this.state.isOpen ? _react2['default'].createElement(_StickyChatWindowJs2['default'], { addMessage: this.props.actions.addMessage }) : null,
 	        _react2['default'].createElement(
 	          'div',
 	          { className: 'SC-Restricted' },
@@ -21837,7 +21901,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21860,7 +21924,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _StickyDialog = __webpack_require__(190);
+	var _StickyDialog = __webpack_require__(182);
 
 	var _StickyDialog2 = _interopRequireDefault(_StickyDialog);
 
@@ -21868,7 +21932,7 @@
 
 	var _StickyMessageArea2 = _interopRequireDefault(_StickyMessageArea);
 
-	__webpack_require__(185);
+	__webpack_require__(190);
 
 	var StickyChatWindow = (function (_Component) {
 	  _inherits(StickyChatWindow, _Component);
@@ -21882,11 +21946,12 @@
 	  _createClass(StickyChatWindow, [{
 	    key: 'render',
 	    value: function render() {
+	      console.log(this.props.addMessage);
 	      return _react2['default'].createElement(
 	        'div',
 	        { className: 'SC-Window' },
 	        _react2['default'].createElement(_StickyDialog2['default'], null),
-	        _react2['default'].createElement(_StickyMessageArea2['default'], null)
+	        _react2['default'].createElement(_StickyMessageArea2['default'], { addMessage: this.props.addMessage })
 	      );
 	    }
 	  }]);
@@ -21898,23 +21963,71 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 181 */
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	__webpack_require__(183);
+
+	var StickyDialog = (function (_Component) {
+	  _inherits(StickyDialog, _Component);
+
+	  function StickyDialog() {
+	    _classCallCheck(this, StickyDialog);
+
+	    _get(Object.getPrototypeOf(StickyDialog.prototype), 'constructor', this).apply(this, arguments);
+	  }
+
+	  _createClass(StickyDialog, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2['default'].createElement('div', { className: 'SC-Dialog' });
+	    }
+	  }]);
+
+	  return StickyDialog;
+	})(_react.Component);
+
+	exports['default'] = StickyDialog;
+	module.exports = exports['default'];
+
+/***/ },
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(182);
+	var content = __webpack_require__(184);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(184)(content, {});
+	var update = __webpack_require__(186)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyChatMini.less", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyChatMini.less");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyDialog.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyDialog.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -21924,21 +22037,21 @@
 	}
 
 /***/ },
-/* 182 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(183)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".SC-Restricted {\n  display: block;\n  position: fixed;\n  bottom: 5px;\n  right: 5px;\n  width: 240px;\n  height: 40px;\n}\n", ""]);
+	exports.push([module.id, ".SC-Dialog {\n  position: relative;\n  width: 100%;\n  height: 90%;\n  border-width: 1px;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 183 */
+/* 185 */
 /***/ function(module, exports) {
 
 	/*
@@ -21994,7 +22107,7 @@
 
 
 /***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -22219,46 +22332,6 @@
 
 
 /***/ },
-/* 185 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(186);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(184)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyChatWindow.less", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyChatWindow.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 186 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(183)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".SC-Window {\n  display: block;\n  position: fixed;\n  border-style: solid;\n  border-radius: 5px;\n  border-width: 1px;\n  bottom: 46px;\n  right: 5px;\n  width: 360px;\n  height: 600px;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
 /* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -22294,6 +22367,13 @@
 	  }
 
 	  _createClass(StickyMessageArea, [{
+	    key: 'handleSend',
+	    value: function handleSend() {
+	      var input = this.refs.messageInput.getDOMNode();
+	      this.props.addMessage(input.value.trim());
+	      input.value = '';
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2['default'].createElement(
@@ -22302,11 +22382,14 @@
 	        _react2['default'].createElement(
 	          'div',
 	          { className: 'SC-MessageArea-TextBox field' },
-	          _react2['default'].createElement('textarea', { rows: '2', className: 'SC-MessageArea-Text' })
+	          _react2['default'].createElement('textarea', { rows: '2', ref: 'messageInput', className: 'SC-MessageArea-Text' })
 	        ),
 	        _react2['default'].createElement(
 	          'span',
-	          { className: 'SC-MessageArea-IconArea' },
+	          {
+	            className: 'SC-MessageArea-IconArea',
+	            onClick: this.handleSend.bind(this)
+	          },
 	          _react2['default'].createElement('i', { className: 'SC-MessageArea-IconArea-Icon big reply icon' })
 	        )
 	      );
@@ -22329,7 +22412,7 @@
 	var content = __webpack_require__(189);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(184)(content, {});
+	var update = __webpack_require__(186)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22349,7 +22432,7 @@
 /* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(183)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 
 
@@ -22363,68 +22446,20 @@
 /* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	__webpack_require__(191);
-
-	var StickyDialog = (function (_Component) {
-	  _inherits(StickyDialog, _Component);
-
-	  function StickyDialog() {
-	    _classCallCheck(this, StickyDialog);
-
-	    _get(Object.getPrototypeOf(StickyDialog.prototype), 'constructor', this).apply(this, arguments);
-	  }
-
-	  _createClass(StickyDialog, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2['default'].createElement('div', { className: 'SC-Dialog' });
-	    }
-	  }]);
-
-	  return StickyDialog;
-	})(_react.Component);
-
-	exports['default'] = StickyDialog;
-	module.exports = exports['default'];
-
-/***/ },
-/* 191 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(192);
+	var content = __webpack_require__(191);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(184)(content, {});
+	var update = __webpack_require__(186)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyDialog.less", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyDialog.less");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyChatWindow.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyChatWindow.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -22434,18 +22469,127 @@
 	}
 
 /***/ },
-/* 192 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(183)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".SC-Dialog {\n  position: relative;\n  width: 100%;\n  height: 90%;\n  border-width: 1px;\n}\n", ""]);
+	exports.push([module.id, ".SC-Window {\n  display: block;\n  position: fixed;\n  border-style: solid;\n  border-radius: 5px;\n  border-width: 1px;\n  bottom: 46px;\n  right: 5px;\n  width: 360px;\n  height: 600px;\n}\n", ""]);
 
 	// exports
 
+
+/***/ },
+/* 192 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(193);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(186)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyChatMini.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/less-loader/index.js!./StickyChatMini.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(185)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".SC-Restricted {\n  display: block;\n  position: fixed;\n  bottom: 5px;\n  right: 5px;\n  width: 240px;\n  height: 40px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports.addMessage = addMessage;
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	var _constantsActionTypes = __webpack_require__(195);
+
+	var types = _interopRequireWildcard(_constantsActionTypes);
+
+	function addMessage() {
+	  return { type: types.ADD_MESSAGE };
+	}
+
+/***/ },
+/* 195 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var ADD_MESSAGE = "ADD_MESSAGE";
+	exports.ADD_MESSAGE = ADD_MESSAGE;
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = messages;
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
+	var _constantsActionTypes = __webpack_require__(195);
+
+	var initalState = {
+	  channel: '',
+	  messages: []
+	};
+
+	function messages(state, action) {
+	  if (state === undefined) state = initalState;
+
+	  switch (action.type) {
+	    case _constantsActionTypes.ADD_MESSAGE:
+	      console.log(state);
+	      return Object.assign({}, state, {
+	        messages: [].concat(_toConsumableArray(state), [action.message])
+	      });
+	    default:
+	      return state;
+	  }
+	}
+
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);

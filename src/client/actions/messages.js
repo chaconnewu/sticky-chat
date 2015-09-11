@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
 
-export function sendMessage() {
-  return { type: types.SEND_MESSAGE };
+export function addMessage() {
+  return { type: types.ADD_MESSAGE };
 }
