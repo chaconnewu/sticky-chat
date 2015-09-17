@@ -33,7 +33,7 @@
   "scripts": {
     "start": "nodemon src/server/server.js",
     "serve": "./node_modules/.bin/http-server -p 3000",
-    "dev": "webpack --progress --colors --watch"
+    "build": "webpack --progress --colors --watch"
   },
   "repository": {
     "type": "git",
