@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import moment from 'moment';
-import { socket } from '../provider';
+import { socket } from '../constants/AppConfig';
 
 export function addMessage(message) {
   return { type: types.ADD_MESSAGE, message };
